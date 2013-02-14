@@ -86,9 +86,12 @@ API języka Vala dla biblioteki gcab.
 %setup -q
 
 %build
+# disabling fast install in configure breaks DESTDIR install
+# (libtool tries to relink gcab and fails, leaving temporary script instead of binary)
 %configure \
 	--disable-silent-rules \
 	%{!?with_static_libs:--disable-static} \
+	--enable-fast-install \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
