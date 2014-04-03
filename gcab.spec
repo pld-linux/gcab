@@ -3,7 +3,7 @@
 %bcond_without	apidocs		# API docs
 %bcond_without	static_libs	# static library
 %bcond_without	vala		# Vala binding
-#
+
 Summary:	Cabinet file library
 Summary(pl.UTF-8):	Biblioteka obsługi plików cabinet
 Name:		gcab
@@ -62,6 +62,9 @@ Summary:	gcab API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki gcab
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 API documentation for gcab library.
