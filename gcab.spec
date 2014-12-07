@@ -8,7 +8,7 @@ Summary:	Cabinet file library
 Summary(pl.UTF-8):	Biblioteka obsługi plików cabinet
 Name:		gcab
 Version:	0.4
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gcab/0.4/%{name}-%{version}.tar.xz
