@@ -13,7 +13,7 @@ License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gcab/0.4/%{name}-%{version}.tar.xz
 # Source0-md5:	27c9f182bd279bedae3ba2fc5734c651
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	gobject-introspection-devel >= 0.9.4
 BuildRequires:	gtk-doc >= 1.14
