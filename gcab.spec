@@ -8,7 +8,7 @@ Summary:	Cabinet file library
 Summary(pl.UTF-8):	Biblioteka obsługi plików cabinet
 Name:		gcab
 Version:	0.6
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gcab/0.6/%{name}-%{version}.tar.xz
@@ -78,6 +78,9 @@ Summary(pl.UTF-8):	API języka Vala dla biblioteki gcab
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.14
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description -n vala-gcab
 Vala API for gcab library.
