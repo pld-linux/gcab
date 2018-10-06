@@ -7,23 +7,26 @@
 Summary:	Cabinet file library
 Summary(pl.UTF-8):	Biblioteka obsługi plików cabinet
 Name:		gcab
-Version:	0.6
-Release:	2
+Version:	1.0
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gcab/0.6/%{name}-%{version}.tar.xz
-# Source0-md5:	dd7333644cb88995693f043da9bf55d3
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gcab/1.0/%{name}-%{version}.tar.xz
+# Source0-md5:	635151194fa1e3cad96e1e2356f3be98
+BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.22.0
+BuildRequires:	glib2-devel >= 1:2.44.0
 BuildRequires:	gobject-introspection-devel >= 0.9.4
 BuildRequires:	gtk-doc >= 1.14
-BuildRequires:	intltool >= 0.40.0
+BuildRequires:	meson >= 0.37.0
+BuildRequires:	ninja
 BuildRequires:	pkgconfig
+BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.14}
 BuildRequires:	xz
 BuildRequires:	zlib-devel
-Requires:	glib2 >= 1:2.22.0
+Requires:	glib2 >= 1:2.44.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -37,7 +40,7 @@ Summary:	Header files for gcab library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki gcab
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.22.0
+Requires:	glib2-devel >= 1:2.44.0
 
 %description devel
 Header files for gcab library.
@@ -91,24 +94,19 @@ API języka Vala dla biblioteki gcab.
 %prep
 %setup -q
 
+%if %{with static_libs}
+%{__sed} -i -e 's/shared_library/library/' libgcab/meson.build
+%endif
+
 %build
-# disabling fast install in configure breaks DESTDIR install
-# (libtool tries to relink gcab and fails, leaving temporary script instead of binary)
-%configure \
-	--disable-silent-rules \
-	%{!?with_static_libs:--disable-static} \
-	--enable-fast-install \
-	--with-html-dir=%{_gtkdocdir}
-%{__make}
+%meson build
+
+%meson_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-# obsoleted by pkg-config
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libgcab-1.0.la
+%meson_install -C build
 
 %find_lang %{name}
 
@@ -120,7 +118,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc NEWS
+%doc NEWS README.md
 %attr(755,root,root) %{_bindir}/gcab
 %attr(755,root,root) %{_libdir}/libgcab-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgcab-1.0.so.0
@@ -149,5 +147,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with vala}
 %files -n vala-gcab
 %defattr(644,root,root,755)
+%{_datadir}/vala/vapi/libgcab-1.0.deps
 %{_datadir}/vala/vapi/libgcab-1.0.vapi
 %endif
