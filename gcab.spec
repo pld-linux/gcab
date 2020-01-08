@@ -7,16 +7,16 @@
 Summary:	Cabinet file library
 Summary(pl.UTF-8):	Biblioteka obsługi plików cabinet
 Name:		gcab
-Version:	1.3
+Version:	1.4
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gcab/1.3/%{name}-%{version}.tar.xz
-# Source0-md5:	8f56c01fff7393fef06016113f8a5c16
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gcab/1.4/%{name}-%{version}.tar.xz
+# Source0-md5:	2dcb17ec6e472411c06551773cbb156f
 URL:		https://gitlab.gnome.org/GNOME/gcab
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.44.0
+BuildRequires:	glib2-devel >= 1:2.62.0
 BuildRequires:	gobject-introspection-devel >= 0.9.4
 BuildRequires:	gtk-doc >= 1.14
 BuildRequires:	meson >= 0.50.0
@@ -28,7 +28,7 @@ BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.14}
 BuildRequires:	xz
 BuildRequires:	zlib-devel
-Requires:	glib2 >= 1:2.44.0
+Requires:	glib2 >= 1:2.62.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,7 +42,7 @@ Summary:	Header files for gcab library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki gcab
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.44.0
+Requires:	glib2-devel >= 1:2.62.0
 
 %description devel
 Header files for gcab library.
