@@ -67,9 +67,7 @@ Summary:	gcab API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki gcab
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 API documentation for gcab library.
@@ -83,9 +81,7 @@ Summary(pl.UTF-8):	API języka Vala dla biblioteki gcab
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.14
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description -n vala-gcab
 Vala API for gcab library.
