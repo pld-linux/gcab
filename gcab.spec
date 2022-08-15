@@ -7,12 +7,12 @@
 Summary:	Cabinet file library
 Summary(pl.UTF-8):	Biblioteka obsługi plików cabinet
 Name:		gcab
-Version:	1.4
+Version:	1.5
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gcab/1.4/%{name}-%{version}.tar.xz
-# Source0-md5:	2dcb17ec6e472411c06551773cbb156f
+Source0:	https://download.gnome.org/sources/gcab/1.5/%{name}-%{version}.tar.xz
+# Source0-md5:	eb1fec63d35aaa82d4154818072c1b0c
 URL:		https://gitlab.gnome.org/GNOME/gcab
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-tools
@@ -22,6 +22,7 @@ BuildRequires:	gtk-doc >= 1.14
 BuildRequires:	meson >= 0.50.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
@@ -92,6 +93,7 @@ API języka Vala dla biblioteki gcab.
 %prep
 %setup -q
 
+%{__sed} -i -e '/^if git\.found/ s/git\.found()/false/' meson.build
 %if %{with static_libs}
 %{__sed} -i -e 's/shared_library/library/' libgcab/meson.build
 %endif
